@@ -1,8 +1,8 @@
-import os
-import sys
 import pygame
 import random
 import time
+import os
+import sys
 
 
 def load_image(name, color_key=None):
@@ -32,7 +32,7 @@ def start_screen():
                   "Управление стрелочками",
                   "Стрелять на пробел",
                   "Приятной игры"]
-    fon = pygame.transform.scale(pygame.image.load('data/земля1.png'), screen_size)
+    fon = pygame.transform.scale(load_image('земля1.png'), SCREEN_SIZE)
     screen.blit(fon, (0, 0))
     font = pygame.font.Font(None, 30)
     text_coord = 150
@@ -59,8 +59,8 @@ def start_screen():
 # Настройки окна
 WIDTH = 500
 HEIGHT = 520
+SCREEN_SIZE = WIDTH, HEIGHT
 FPS = 60
-screen_size = WIDTH, HEIGHT
 
 # Настройка цвета
 BLACK = (0, 0, 0)
@@ -82,7 +82,6 @@ x = WIDTH // 2
 y = HEIGHT // 2
 hero = pygame.Rect(x, y, 60, 50)
 heroImg = load_image('razorinv.png')
-# heroImg = pygame.image.load('data/razorinv.png')
 
 # Hp
 hp = 3
@@ -95,7 +94,6 @@ a = 0
 enemies = []
 enemycd = 5
 enemyImage = load_image('invaderinv_1.png').convert()
-# enemyImage = pygame.image.load('data/invaderinv_1.png').convert()
 enemyRect = enemyImage.get_rect()
 we = enemyRect.width
 he = enemyRect.height
@@ -104,7 +102,6 @@ points = 0
 # Звезд
 stars = []
 starcd = 5
-# starImg = pygame.image.load('data/starinv.png')
 starImg = load_image('starinv.png')
 starRect = starImg.get_rect()
 ws = enemyRect.width
@@ -127,7 +124,6 @@ speedRect = pygame.Rect(x2, y2, 20, 20)
 wb = 2
 hb = 5
 bulletImg = load_image("bullet.png")
-# bulletImg = pygame.image.load("data/bullet.png")
 bullets = []
 Shot = False
 
@@ -153,7 +149,6 @@ play_up = ''
 play_down = ''
 
 # МЕНЮ
-# HImg = pygame.image.load('data/земля1.png')
 HImg = load_image('земля1.png')
 font = pygame.font.SysFont('arial', 18)
 # сложность
@@ -170,19 +165,17 @@ speedX = 1
 jjj = []
 hhh = []
 gamemode = 1
+pygame.display.set_caption("Invaders")
+start_screen()
 bonusS = False
 bonusH = False
 GO = False
-start_screen()
 running = True
 while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
     if gamemode == 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                isGameRunning = False
+                running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if 170 < event.pos[0] < 160 + 170 and 150 < event.pos[1] < 150 + 50:
                     if event.button == 1:
@@ -212,7 +205,7 @@ while running:
         text = font.render('Кол-во HP:' + str(hp), 1, (0, 255, 0))
         text1 = font.render('Играть', 1, (0, 255, 0))
         text2 = font.render('Волны: x' + str(speedX), 1, (0, 255, 0))
-        text3 = gameover.render('Allien offensive', 1, (0, 255, 0))
+        text3 = gameover.render('Invaders', 1, (0, 255, 0))
         text4 = font.render('Выход', 1, (0, 255, 0))
 
         pygame.draw.rect(screen, (0, 0, 0), (170, 150, 160, 50))
