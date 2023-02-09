@@ -30,18 +30,22 @@ def terminate():
 def start_screen():
     intro_text = ["Лучшая игра всех времён",
                   "Управление стрелочками",
-                  "Стрелять на пробел",
-                  "Приятной игры"]
-    fon = pygame.transform.scale(load_image('земля1.png'), SCREEN_SIZE)
+                  "     Стрелять на пробел",
+                  "        Приятной игры"]
+    fon = pygame.transform.scale(load_image('земля1.png').convert(), SCREEN_SIZE)
     screen.blit(fon, (0, 0))
     font = pygame.font.Font(None, 30)
-    text_coord = 150
+    text_coord = 200
+    surf = pygame.Surface((265, 140))
+    surf.fill((0, 0, 0))
+    surf.set_alpha(200)
+    screen.blit(surf, (120, 195))
     for line in intro_text:
-        string_rendered = font.render(line, 1, pygame.Color('white'))
+        string_rendered = font.render(line, 1, pygame.Color(200, 200, 200))
         intro_rect = string_rendered.get_rect()
         text_coord += 10
         intro_rect.top = text_coord
-        intro_rect.x = 10
+        intro_rect.x = 125
         text_coord += intro_rect.height
         screen.blit(string_rendered, intro_rect)
 
