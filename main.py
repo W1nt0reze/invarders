@@ -82,6 +82,7 @@ x = WIDTH // 2
 y = HEIGHT // 2
 hero = pygame.Rect(x, y, 60, 50)
 heroImg = load_image('razorinv.png')
+heroImg.set_colorkey((0, 0, 0))
 
 # Hp
 hp = 3
@@ -98,6 +99,7 @@ enemyRect = enemyImage.get_rect()
 we = enemyRect.width
 he = enemyRect.height
 points = 0
+enemyImage.set_colorkey((0, 0, 0))
 
 # Звезд
 stars = []
